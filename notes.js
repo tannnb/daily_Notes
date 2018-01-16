@@ -26,9 +26,30 @@ const change = {
     _getAllKeys(obj){
         // Object.keys(obj)
         return Object.keys(obj).filter((item) => {
-            return obj[item]>2
+            return obj[item] > 2
         })
+    },
+    /*[1,2,3,4,5,6,7]*/
+    _changeArray(data,size){
+        var data = data.slice();
+        var count = parseInt(data.length/size);
+        var result = [];
+        for(var i=0;i<count;i++){
+            ret = [];
+            for(var j = 0;j<count;j++){
+                result.push(data[i*count+j])
+            }
+        }
+        ret = [];
+        if(size*count<arr.length){
+            for(var k=size*count;k<data.length;k++){
+                ret.push(data[size*count+k])
+            }
+            result.push(ret)
+        }
+        return result
     }
+
 };
 
 
