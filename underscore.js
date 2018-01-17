@@ -3,6 +3,20 @@
     //缓存this，浏览器的window或者服务端的exports
     var root = this;
 
+    var ArrayProto = Array.prototype,
+        ObjProto = Object.prototype,
+        FuncProto  = Function.prototype;
+
+    var push = ArrayProto.push,
+        slice = ArrayProto.slice,
+        toString = ObjProto.toString,
+        hasOwnProperty = ObjProto.hasOwnProperty;
+
+    var nativeInsArray = Array.isArray,
+        nativeKeys = Object.keys,
+        nativeBind = FuncProto.bind,
+        nativeCreate = Object.create;
+
     var _ = function (obj) {
         // 如果参数是自己的实例，返回
         if (obj instanceof _) {
@@ -60,7 +74,31 @@
         // 转为字符串格式
         var id = ++idCounter + "";
         return prefix ? prefix + id : id
-    }
+    };
+
+    //判断Obj是否为undefined
+    _.isUndefined = function (Obj) {
+        return Obj === void 0;
+    };
+
+    _.isNull = function (Obj) {
+        return Obj === null;   // 如果Obj传入的是undefined那么返回的也是false
+    };
+
+    _.isArray = nativeInsArray || function (Obj) {
+        return toString.call(Obj) === '[object Array]'
+    };
+    // 判断是否存在Array.isArray
+    // {}.toString.call(arr) === '[object Array]'
+
+    _.isElement = function (Obj) {
+        return !!(Obj && Obj.nodeType === 1)  // nodeType =1 元素节点
+    };
+
+    _.hasOwnProperty = function (Obj,key) {
+        return Obj != null && Obj.hasOwnProperty.call(Obj, key)
+    };
+
 
 
 
