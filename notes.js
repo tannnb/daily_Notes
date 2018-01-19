@@ -72,3 +72,33 @@ function sum() {
 }
 
 
+{
+    var classType = {};
+    var arrType = "Boolean Number String Function Array Date RegExp Object Error"
+    arrType.split(',').forEach(function(item,index){
+        classType['[object '+ item +']'] = item.toLowerCase()
+    })
+    
+   function type(obj){
+        if(obj == null){
+            return obj + ''
+        }
+       return typeof obj === 'object' || typeof obj === 'function'? classType[Object.prototype.toString.call(obj)] || 'object': typeof obj
+   }
+    
+   function isFunction(obj){
+        return type(obj) === 'function'
+   }
+    
+   function typeCell(){}
+    isFunction(typeCell)  // true
+    
+}
+
+
+
+
+
+
+
+
