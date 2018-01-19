@@ -73,6 +73,7 @@ function sum() {
 
 
 {
+    // 类型判断
     var classType = {};
     var arrType = "Boolean Number String Function Array Date RegExp Object Error"
     arrType.split(' ').forEach(function(item,index){
