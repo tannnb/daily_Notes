@@ -75,7 +75,7 @@ function sum() {
 {
     var classType = {};
     var arrType = "Boolean Number String Function Array Date RegExp Object Error"
-    arrType.split(',').forEach(function(item,index){
+    arrType.split(' ').forEach(function(item,index){
         classType['[object '+ item +']'] = item.toLowerCase()
     })
     
