@@ -96,6 +96,20 @@ function sum() {
     
 }
 
+// 深拷贝
+function cloneObj(origin,target){
+      for (var key in origin){
+          var hasObj = Object.prototype.toString.call(origin[key])
+          if (origin.hasOwnProperty(key)){
+              target[key] = origin[key]
+          }
+          if (typeof origin[key] === 'object' && origin[key] !== null){
+              target[key] = hasObj === '[object Array]'? []:{}
+              cloneObj(origin[key],target[key])
+          }
+      }
+      return target
+    }
 
 
 
