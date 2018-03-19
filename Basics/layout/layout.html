@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Layout</title>
+    <style>
+        html *{
+            padding:0;
+            margin: 0;
+        }
+        .layout{
+            margin-top: 20px;
+        }
+        .layout article div{
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<seletion name="" id="" class="layout float">
+    <style media="screen">
+        .layout.float .left{
+            width: 300px;
+            float: left;
+            background: #ddd;
+        }
+        .layout.float .right{
+            width: 300px;
+            float: right;
+            background: #ddd;
+        }
+        .layout.float .center{
+            background: #bbb;
+        }
+    </style>
+    <article class="left-right-center">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="center">
+            浮动解决方案
+            三栏布局中间部分
+        </div>
+    </article>
+</seletion>
+
+<hr>
+
+<seletion class="layout absolute">
+    <style media="screen">
+        .layout.absolute .left-right-center>div{
+            position: absolute;
+        }
+        .layout.absolute .left{
+            left:0;
+            width: 300px;
+            background: #ddd;
+        }
+        .layout.absolute .right{
+            right: 0;
+            width: 300px;
+            background: #ddd;
+        }
+        .layout.absolute .center{
+            left:300px;
+            right:300px;
+            background: #bbb;
+        }
+    </style>
+    <article class="left-right-center">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="center">
+            浮动解决方案
+            三栏布局中间部分
+        </div>
+    </article>
+</seletion>
+
+
+<seletion class="layout flexbox">
+    <style>
+        .layout.flexbox{
+            margin-top: 300px;
+        }
+        .layout.flexbox .left-right-center{
+            display: flex;
+        }
+        .layout.flexbox .left{
+            width: 300px;
+            background: #ddd;
+        }
+        .layout.flexbox .right{
+            width: 300px;
+            background: #ddd;
+        }
+        .layout.flexbox .center{
+            flex:1;
+            background: #bbb;
+        }
+        </style>
+    <article class="left-right-center">
+        <div class="left"></div>
+        <div class="center">
+            flexbox解决方案
+            三栏布局中间部分
+        </div>
+        <div class="right"></div>
+
+    </article>
+</seletion>
+<hr>
+<seletion class="layout table">
+    <style>
+        .layout.table .left-right-center{
+           width: 100%;
+            display: table;
+            height:100px;
+        }
+        .layout.table .left-right-center>div{
+            display: table-cell;
+        }
+        .layout.table .left{
+            width: 300px;
+            background: #ddd;
+        }
+        .layout.table .right{
+            width: 300px;
+            background: #ddd;
+        }
+        .layout.table .center{
+            background: #bbb;
+        }
+    </style>
+    <article class="left-right-center">
+        <div class="left"></div>
+        <div class="center">
+            表格布局解决方案
+            三栏布局中间部分
+        </div>
+        <div class="right"></div>
+
+    </article>
+</seletion>
+
+<hr>
+
+
+<seletion class="layout grid">
+    <style>
+        .layout.grid .left-right-center{
+            display: grid;
+            width: 100%;
+            grid-template-rows: 100px;
+            grid-template-columns: 300px auto 300px;
+        }
+
+        .layout.grid .left{
+            background: #ddd;
+        }
+        .layout.grid .right{
+            background: #ddd;
+        }
+        .layout.grid .center{
+            background: #bbb;
+        }
+    </style>
+    <article class="left-right-center">
+        <div class="left"></div>
+        <div class="center">
+            grid解决方案
+            三栏布局中间部分
+        </div>
+        <div class="right"></div>
+    </article>
+</seletion>
+
+</body>
+</html>
