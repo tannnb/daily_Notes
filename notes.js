@@ -72,3 +72,48 @@ function sum() {
 }
 
 
+{
+    // 类型判断
+    var classType = {};
+    var arrType = "Boolean Number String Function Array Date RegExp Object Error"
+    arrType.split(' ').forEach(function(item,index){
+        classType['[object '+ item +']'] = item.toLowerCase()
+    })
+    
+   function type(obj){
+        if(obj == null){
+            return obj + ''
+        }
+       return typeof obj === 'object' || typeof obj === 'function'? classType[Object.prototype.toString.call(obj)] || 'object': typeof obj
+   }
+    
+   function isFunction(obj){
+        return type(obj) === 'function'
+   }
+    
+   function typeCell(){}
+    isFunction(typeCell)  // true
+    
+}
+
+// 深拷贝
+function cloneObj(origin,target){
+      for (var key in origin){
+          var hasObj = Object.prototype.toString.call(origin[key])
+          if (origin.hasOwnProperty(key)){
+              target[key] = origin[key]
+          }
+          if (typeof origin[key] === 'object' && origin[key] !== null){
+              target[key] = hasObj === '[object Array]'? []:{}
+              cloneObj(origin[key],target[key])
+          }
+      }
+      return target
+    }
+
+
+
+
+
+
+
