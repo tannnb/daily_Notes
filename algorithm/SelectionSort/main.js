@@ -51,22 +51,19 @@ console.log(res)
 
 // 数组对象排序
 var arrData = [
-    {name: "张三", age: 24},
-    {name: "李四", age: 22}
+    {name: "Zlex", age: 24},
+    {name: "Tom", age: 5}
 ];
 
 function comparePuls(props) {
     return function (obj1, obj2) {
         var obj1 = obj1[props]
         var obj2 = obj2[props]
+        if (!isNaN(Number(obj1)) && !isNaN(Number(obj2))) {
+            obj1 = Number(obj1);
+            obj2 = Number(obj2);
+        }
         return obj1 > obj2 ? 1 : obj1 < obj2 ? -1 : 0
-        /*if(obj1>obj2){
-         return 1
-         }else if(obj1<obj2){
-         return -1
-         }else{
-         return 0
-         }*/
     }
 }
 var arrdata = arrData.sort(comparePuls('age'))
