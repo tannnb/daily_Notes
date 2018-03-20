@@ -96,7 +96,7 @@ function sum() {
     
 }
 
-// 深拷贝
+// deepCopy
 function cloneObj(origin,target){
       for (var key in origin){
           var hasObj = Object.prototype.toString.call(origin[key])
