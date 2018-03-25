@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div id="obox"></div>
+
+<script>
+    /* 获取盒模型宽高 */
+    // 1
+    document.getElementById('obox').style.width/height
+
+    //2  getComputedStyle || currentStyle
+    function getStyle(el,attr) {
+        if(window.getComputedStyle){
+            return window.getComputedStyle(el)[attr]
+        }else{
+            return el.currentStyle[attr]
+        }
+    }
+    getStyle(document.querySelector('obox'),'width')
+
+    //3  getBoundingClientRect
+    document.querySelector('obox').getBoundingClientRect().width
+
+</script>
+</body>
+</html>
