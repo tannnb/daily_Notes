@@ -1,0 +1,141 @@
+h2 {
+	margin: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.wrap {
+	position: relative;
+	width: 600px;
+	margin: 30px auto;
+	font: 12px "宋体";
+}	
+.addBtn {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+input {
+	margin: 0;
+}
+a {
+	color: #337ab7;
+	text-decoration: none;
+}
+a:hover {
+	color: #23527c;
+}
+a.selected {
+	color: #ccc;
+}
+.header {
+	border-bottom: 2px solid #666;
+}
+.title {
+	text-align: center;
+	font: 14px/32px "宋体";
+}
+.nav {
+	display: flex;
+	font: 12px/26px "宋体";
+	justify-content: space-between;
+	border-bottom: 2px solid #666;
+}
+.add {
+	display: flex;
+	height: 40px;
+	align-items: center;
+	font: 12px/24px "宋体";
+	justify-content: space-between;
+	border-bottom: 2px solid #666;
+}
+.name,
+.age,
+.submit {
+	width: 80px;
+	text-align: center;
+	height: 24px;
+	padding: 0;
+	border: 1px solid #CCC;
+}
+
+.genderWrap,
+.stateWrap {
+	width: 44px;
+	padding: 1px;
+	border: 1px solid #CCC;
+}
+.stateWrap {
+	width: 88px;
+}
+
+.gender,
+.state {
+	display: none;
+}
+
+.genderIco,
+.stateIco {
+	width: 22px;
+	height: 22px;
+	background: #666;
+	overflow: hidden;
+	transition: .3s;
+}
+.stateIco {
+	width: 44px;
+}
+.genderInner,
+.stateInner {
+	transition: .3s;
+	display: flex;
+	width: 44px;
+	font: 12px/22px "宋体";
+	color: #fff;
+}
+.stateInner {
+	width: 88px;
+}
+.genderInner span,
+.stateInner span {
+	margin: auto;
+}
+.gender:checked ~ .genderIco {
+	margin-left: 22px;
+}
+.gender:checked ~ .genderIco .genderInner{
+	margin-left: -22px;
+}
+.state:checked ~ .stateIco {
+	margin-left: 44px;
+}
+.state:checked ~ .stateIco .stateInner{
+	margin-left: -44px;
+}
+.list {
+	margin: 0 auto;
+	width: 90%;
+}
+.list li {
+	display: flex;
+	font: 12px/24px "宋体";
+	border-bottom: 1px solid #ccc;
+}
+.list span {
+	display: block;
+	margin: 0 auto;
+	flex: 1;
+	text-align: center;
+}
+.list li span:nth-of-type(1) {
+	width: 40px;
+	flex: none;
+}
+.operate {
+	display: flex;
+	justify-content: space-around;
+	font: 12px/24px "宋体";
+	border-top: 2px solid #000;
+}
