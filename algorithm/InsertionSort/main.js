@@ -1,6 +1,4 @@
 const randormArray = require('../TestHelper')
-
-
 var randomArray = randormArray(10, 20, 80)
 
 // 插入排序
@@ -23,9 +21,11 @@ function insertionSort(arr) {
     return arr
 }
 
-insertionSort(randomArray)  //[ 37, 43, 45, 47, 49, 50, 52, 64, 68, 78 ]
+let test1 = insertionSort(randomArray)  //[ 37, 43, 45, 47, 49, 50, 52, 64, 68, 78 ]
+console.log(test1)
 
 
+/*
 for (var i = 1; i < arr.length; i++) {
     // J进入循环必须满足2个条件，j>0且要比前一位元素要小
     for (var j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
@@ -33,4 +33,4 @@ for (var i = 1; i < arr.length; i++) {
         arr[j] = arr[j - 1]
         arr[j - 1] = temp
     }
-}
+}*/
