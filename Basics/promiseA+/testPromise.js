@@ -44,7 +44,7 @@ promise.then(data => {
 })*/
 
 
-
+/*
 let p = new Promise((resolve, reject) => {
     resolve(1000)
 })
@@ -63,4 +63,15 @@ promise2.then(data => {
     console.log("err:", err)
 }).then(data => {
     console.log('data3:',data)
+})*/
+
+
+
+let p = new Promise((resolve, reject) => {
+    resolve(1000)
+})
+// resolve, reject有可能是可选参数
+// 处理成then(data => return data) 吧值传递下去
+p.then().then().then(data => {
+    console.log(data)
 })

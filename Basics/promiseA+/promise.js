@@ -81,6 +81,12 @@ class Promise {
     }
 
     then(onFulfilled, onRejected) {
+        // onFulfilled  onRejected 是可选参数
+        // 处理成then(data => return data) 吧值传递下去
+        onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : data => data
+        onRejected = typeof onRejected === 'function' ? onFulfilled : err => { throw err }
+
+
         let promise2 = new Promise((resolve, reject) => {
             if (this.status === RESOLVED) {
                 setTimeout(() => {
