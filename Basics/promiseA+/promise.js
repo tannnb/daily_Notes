@@ -12,18 +12,19 @@ const resolvePromise = (promise2, x, resolve, reject) => {
 
     // 如果x为对象或函数
     if (typeof x === 'object' && typeof x !== null || typeof x === 'function') {
-        let called; // 保证只能调用一次成功或者失败，防止多次调用
+        let called = false; // 保证只能调用一次成功或者失败，防止多次调用
         try {
             let then = x.then  // then有可能是通过defineProperty来定义
 
             if (typeof then === 'function') {
-                then.call(x,
+                then.call(
+                    x,
                     (y) => {
                         if (called) return
                         called = true
 
-                        // 采用promise的成功结果将值乡下传递
-                        // 如果返回的y为promise继续自行递归，指导y为一个普通值为止
+                        // 采用promise的成功结果将值向下传递
+                        // 如果返回的y为promise继续自行递归，直到y为一个普通值为止
                         resolvePromise(promise2, y, resolve, reject)
                     },
                     (r) => {
@@ -83,8 +84,10 @@ class Promise {
     then(onFulfilled, onRejected) {
         // onFulfilled  onRejected 是可选参数
         // 处理成then(data => return data) 吧值传递下去
-        onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : data => data
-        onRejected = typeof onRejected === 'function' ? onFulfilled : err => { throw err }
+        onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+        onRejected = typeof onRejected === 'function' ? onFulfilled : err => {
+            throw err
+        }
 
 
         let promise2 = new Promise((resolve, reject) => {
@@ -135,8 +138,47 @@ class Promise {
                 })
             }
         })
+
         return promise2
     }
+
+    static isPromise(value){
+        if(typeof value === 'object' && value !== null || typeof value === 'function') {
+            if(typeof value.then === 'function') {
+                return true;
+            }
+        }else {
+            return false
+        }
+    }
+
+
+    static all(values) {
+        return new Promise((resolve, reject) => {
+            let arr = []
+            let index = 0
+
+            let processData = (key,value) => {
+                arr[key] = value
+                if(++index === values.length) {
+                    resolve(arr)
+                }
+            }
+
+            for(let i=0;i<values.length;i++) {
+                let current = values[i]
+                if(Promise.isPromise(current)) {
+                    current.then(data => {
+                        processData(i,data)
+                    },reject)
+                }else {
+                    processData(i,current)
+                }
+            }
+
+        })
+    }
+
 }
 
 

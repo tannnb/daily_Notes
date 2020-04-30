@@ -1,4 +1,5 @@
 let Promise = require('./promise')
+const fs = require('fs')
 
 // 基础同步 easy.js
 /*new Promise((resolve, reject) => {
@@ -26,7 +27,6 @@ promise.then(data => {
 }, err => {
     console.log('err2:', err)
 })*/
-
 
 
 // 链式调用
@@ -66,7 +66,7 @@ promise2.then(data => {
 })*/
 
 
-
+/*
 let p = new Promise((resolve, reject) => {
     resolve(1000)
 })
@@ -74,4 +74,21 @@ let p = new Promise((resolve, reject) => {
 // 处理成then(data => return data) 吧值传递下去
 p.then().then().then(data => {
     console.log(data)
+})
+*/
+
+function read(url) {
+    return new Promise((resolve,reject) => {
+        fs.readFile(url,'utf-8',(err,data) => {
+            if(err) reject(err)
+            resolve(data)
+        })
+    })
+
+}
+
+Promise.all([1, 2, read('./name.txt'), 4, 5]).then(data => {
+    console.log('data:', data)
+}, err => {
+    console.log('err:', err)
 })
