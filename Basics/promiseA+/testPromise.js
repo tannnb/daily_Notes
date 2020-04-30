@@ -1,4 +1,4 @@
-let Promise = require('./async-easy')
+let Promise = require('./easy-chat')
 
 // 基础同步 easy.js
 /*new Promise((resolve, reject) => {
@@ -11,10 +11,10 @@ let Promise = require('./async-easy')
 
 
 // 异步promise async-easy
-let promise = new Promise((resolve, reject) => {
+/*let promise = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve('success')
-    }, 1000)
+    })
 })
 promise.then(data => {
     console.log('data1:', data)
@@ -22,6 +22,22 @@ promise.then(data => {
     console.log('err1:', err)
 })
 promise.then(data => {
+    console.log('data2:', data)
+}, err => {
+    console.log('err2:', err)
+})*/
+
+
+
+// 链式调用
+let promise = new Promise((resolve, reject) => {
+    resolve('success')
+}).then(data => {
+    console.log('data1:', data)
+    return 1000
+}, err => {
+    console.log('err1:', err)
+}).then(data => {
     console.log('data2:', data)
 }, err => {
     console.log('err2:', err)
