@@ -1,4 +1,4 @@
-let Promise = require('./easy-chat')
+let Promise = require('./promise')
 
 // 基础同步 easy.js
 /*new Promise((resolve, reject) => {
@@ -30,7 +30,7 @@ promise.then(data => {
 
 
 // 链式调用
-let promise = new Promise((resolve, reject) => {
+/*let promise = new Promise((resolve, reject) => {
     resolve('success')
 }).then(data => {
     console.log('data1:', data)
@@ -41,4 +41,26 @@ let promise = new Promise((resolve, reject) => {
     console.log('data2:', data)
 }, err => {
     console.log('err2:', err)
+})*/
+
+
+
+let p = new Promise((resolve, reject) => {
+    resolve(1000)
+})
+
+let promise2 = p.then(data => {
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+            resolve('hello Promise')
+        },1000)
+    })
+
+})
+promise2.then(data => {
+    console.log("data2:", data)
+}, err => {
+    console.log("err:", err)
+}).then(data => {
+    console.log('data3:',data)
 })
