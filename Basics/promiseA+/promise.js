@@ -12,21 +12,33 @@ const resolvePromise = (promise2, x, resolve, reject) => {
 
     // 如果x为对象或函数
     if (typeof x === 'object' && typeof x !== null || typeof x === 'function') {
+        let called; // 保证只能调用一次成功或者失败，防止多次调用
         try {
             let then = x.then  // then有可能是通过defineProperty来定义
 
             if (typeof then === 'function') {
                 then.call(x,
                     (y) => {
-                        resolve(y) // 采用promise的成功结果将值乡下传递
+                        if (called) return
+                        called = true
+
+                        // 采用promise的成功结果将值乡下传递
+                        // 如果返回的y为promise继续自行递归，指导y为一个普通值为止
+                        resolvePromise(promise2, y, resolve, reject)
                     },
                     (r) => {
+                        if (called) return
+                        called = true
+
                         reject(r) // 采用失败值向下传递
                     })
             } else {
                 resolve(x) // 说明x是一个普通对象非函数
             }
         } catch (e) {
+            if (!called) return
+            called = true
+
             reject(e)
         }
     } else {
