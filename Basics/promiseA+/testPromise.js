@@ -77,6 +77,7 @@ p.then().then().then(data => {
 })
 */
 
+/*
 function read(url) {
     return new Promise((resolve,reject) => {
         fs.readFile(url,'utf-8',(err,data) => {
@@ -92,3 +93,6 @@ Promise.all([1, 2, read('./name.txt'), 4, 5]).then(data => {
 }, err => {
     console.log('err:', err)
 })
+*/
+
+
