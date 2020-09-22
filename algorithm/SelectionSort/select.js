@@ -1,3 +1,5 @@
+const randomArray = require('../TestHelper')
+
 function swap(array, t1, t2) {
     let temp = array[t1];
     array[t1] = array[t2];
@@ -7,17 +9,17 @@ function swap(array, t1, t2) {
 
 /*
  *   选择排序：从一组数组中，选择最小的值
- *   // 将arr[i] 与arr[i+1]... 依次进行对比，若小于arr[i],则记录当前j值并赋值minIndex
+ *   将arr[i] 与arr[i+1]... 依次进行对比，若小于arr[i],则记录当前j值并赋值minIndex
  * */
 
 function selectionSort(arr) {
-
-    for (var i = 0; i < arr.length; i++) {
+    let minIndex
+    for (let i = 0; i < arr.length; i++) {
 
         // 寻找到[i,n) 区间里的最小值，并记录
-        var minIndex = i;
+        minIndex = i;
 
-        for (var j = i + 1; j < arr.length; j++) {
+        for (let j = i + 1; j < arr.length; j++) {
             if (arr[j] < arr[minIndex]) {
                 minIndex = j
             }
@@ -27,12 +29,7 @@ function selectionSort(arr) {
     return arr
 }
 
-var ret1 = selectionSort([10, 9, 8, 7, 6, 5, 4, 3, 2, 1])
-var ret2 = selectionSort([10, 9, 8, 7, 6.4, 5, 4, 3, 2, 1])
-var ret3 = selectionSort(['A', 'G', 'Z', 'C', 'H'])
-console.log(ret1)
-console.log(ret2)
-console.log(ret3)
+console.log(selectionSort(randomArray(0, 10)))
 
 
 // 利用比较函数
@@ -45,20 +42,21 @@ function compare(n, m) {
         return 0
     }
 }
-var res = [10, 9, 8, 7, 6.4, 5, 4, 3, 21, 1].sort(compare)
+
+let res = [10, 9, 8, 7, 6.4, 5, 4, 3, 21, 1].sort(compare)
 console.log(res)
 
 
 // 数组对象排序
-var arrData = [
-    {name: "Zlex", age: 24},
-    {name: "Tom", age: 5}
+let arrData = [
+    { name: "Zlex", age: 24 },
+    { name: "Tom", age: 5 }
 ];
 
 function comparePuls(props) {
-    return function (obj1, obj2) {
-        var obj1 = obj1[props]
-        var obj2 = obj2[props]
+    return function(obj1, obj2) {
+        obj1 = obj1[props]
+        obj2 = obj2[props]
         if (!isNaN(Number(obj1)) && !isNaN(Number(obj2))) {
             obj1 = Number(obj1);
             obj2 = Number(obj2);
@@ -66,5 +64,6 @@ function comparePuls(props) {
         return obj1 > obj2 ? 1 : obj1 < obj2 ? -1 : 0
     }
 }
-var arrdata = arrData.sort(comparePuls('age'))
+
+let arrdata = arrData.sort(comparePuls('age'))
 console.log(arrdata)

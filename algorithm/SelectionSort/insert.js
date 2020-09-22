@@ -1,9 +1,9 @@
-const randormArray = require('../TestHelper')
-var randomArray = randormArray(10, 20, 80)
+const randomArray = require('../TestHelper')
+let randomArr = randomArray(10, 20)
 
-// 插入排序
-/*
- * 第一个默认已经排好，从下标为1开始，依次与前面进行对比，如arr[j-1]<arr[j] 刚好为排序顺序，直接breack当次
+
+/* 插入排序
+ * 第一个默认已经排好，从下标为1开始，依次与前面进行对比，如arr[j-1]<arr[j] 刚好为排序顺序
  * */
 function insertionSort(arr) {
 
@@ -13,16 +13,13 @@ function insertionSort(arr) {
                 var temp = arr[j]
                 arr[j] = arr[j - 1]
                 arr[j - 1] = temp
-            } else {
-                break
             }
         }
     }
     return arr
 }
 
-let test1 = insertionSort(randomArray)  //[ 37, 43, 45, 47, 49, 50, 52, 64, 68, 78 ]
-console.log(test1)
+console.log(insertionSort(randomArr))
 
 
 /*
